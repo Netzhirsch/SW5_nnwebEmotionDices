@@ -1,0 +1,254 @@
+@duration:300ms;
+@timing-fn:ease;
+@touch:~"(max-width:1023px)";
+
+.nnweb_emotion_dices {
+	display:block;
+	position:relative;
+	height:100%;
+	width:100%;
+	
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:center;
+	
+	perspective:400px;
+	
+	overflow:hidden;
+	
+	&.nnwebEmotionDices_hintergrund_position_links { background-position:left center; }
+	&.nnwebEmotionDices_hintergrund_position_mitte { background-position:center center; }
+	&.nnwebEmotionDices_hintergrund_position_rechts { background-position:right center; }
+
+	&.parallax {
+		background-attachment:fixed;	
+		//background-size:auto 100%;
+	}
+
+	.wrapper {
+		transform:rotate3d(1,0,0, 90deg);
+		width:100%;
+		height:100%;
+		position:absolute;
+		top:0;
+		left:0;
+		pointer-events:none;
+		padding:0 5%;
+		overflow:hidden;
+		background:#000;
+	
+		h1,h2,h3,h4,h5,h6,p {
+			color:#FFF;
+		}
+	}
+	
+	&.in-top {	
+		perspective-origin:50% 0;
+		
+		 .wrapper {
+			transform-origin:50% 0%;
+			animation:in-top @duration @timing-fn 0ms 1 forwards;
+		}
+	}
+	
+	&.in-right {	
+		perspective-origin:100% 50%;
+		
+		 .wrapper {
+			transform-origin:100% 50%;
+			animation:in-right @duration @timing-fn 0ms 1 forwards;
+		}
+	}
+	
+	&.in-bottom {	
+		perspective-origin:50% 100%;
+		
+		 .wrapper {
+			transform-origin:50% 100%;
+			animation:in-bottom @duration @timing-fn 0ms 1 forwards;
+		}
+	}
+	
+	&.in-left {	
+		perspective-origin:0 50%;
+		
+		 .wrapper {
+			transform-origin:0% 50%;
+			animation:in-left @duration @timing-fn 0ms 1 forwards;
+		}
+	}
+	
+	&.out-top {	
+		perspective-origin:50% 0;
+		
+		 .wrapper {
+			transform-origin:50% 0%;
+			animation:out-top @duration @timing-fn 0ms 1 forwards;
+		}
+	}
+	
+	&.out-right {	
+		perspective-origin:100% 50%;
+		
+		 .wrapper {
+			transform-origin:100% 50%;
+			animation:out-right @duration @timing-fn 0ms 1 forwards;
+		}
+	}
+	
+	&.out-bottom {	
+		perspective-origin:50% 100%;
+		
+		 .wrapper {
+			transform-origin:50% 100%;
+			animation:out-bottom @duration @timing-fn 0ms 1 forwards;
+		}
+	}
+	
+	&.out-left {	
+		perspective-origin:0% 50% ;
+		
+		 .wrapper {
+			transform-origin:0% 50%;
+			animation:out-left @duration @timing-fn 0ms 1 forwards;
+		}
+	}
+}
+
+
+@media @touch {
+	.nnweb_emotion_dices {
+			
+		&:before {
+			content:'';
+			background-image:inherit;
+			background-size:cover;
+			background-repeat:no-repeat;
+			background-position:center center;
+			position:absolute;
+		}
+		
+		.wrapper {
+			transform:none!important;
+			animation:none!important;
+		}
+		
+		&.touch-left {
+			
+			&:before {
+				height:100%;
+				width:50%;
+				top:0;
+				bottom:0;
+				left:auto;
+				right:0;
+			}
+			
+			.wrapper {
+				height:100%;
+				width:50%;
+				top:0;
+				bottom:0;
+				left:0;
+				right:auto;
+			}
+		}
+		
+		&.touch-right {
+			
+			&:before {
+				height:100%;
+				width:50%;
+				top:auto;
+				bottom:0;
+				left:0;
+				right:0;
+			}
+			
+			.wrapper {
+				height:100%;
+				width:50%;
+				top:0;
+				bottom:0;
+				left:auto;
+				right:0;
+			}
+		}
+		
+		&.touch-top {
+			
+			&:before {
+				height:50%;
+				width:100%;
+				top:auto;
+				bottom:0;
+				left:0;
+				right:0;
+			}
+			
+			.wrapper {
+				height:50%;
+				width:100%;
+				top:0;
+				bottom:auto;
+				left:0;
+				right:0;
+			}	
+		}
+		
+		&.touch-bottom {
+			
+			&:before {
+				height:50%;
+				width:100%;
+				top:0;
+				bottom:auto;
+				left:0;
+				right:0;
+			}
+			
+			.wrapper {
+				height:50%;
+				width:100%;
+				top:auto;
+				bottom:0;
+				left:0;
+				right:0;
+			}	
+		}
+	}
+}
+
+@keyframes in-top {
+	from {transform:rotate3d(-1,0,0, 90deg)}
+	to   {transform:translate3d(0,0,0)}
+}
+@keyframes in-right {
+	from {transform:rotate3d(0,-1,0, 90deg)}
+	to   {transform:translate3d(0,0,0)}
+}
+@keyframes in-bottom {
+	from {transform:rotate3d(1,0,0, 90deg)}
+	to   {transform:translate3d(0,0,0)}
+}
+@keyframes in-left {
+	from {transform:rotate3d(0,1,0, 90deg)}
+	to	 {transform:translate3d(0,0,0)}
+}
+
+@keyframes out-top {
+	from {transform:rotate3d(0,0,0, 0deg)}
+	to	 {transform:rotate3d(-1,0,0, 90deg)}
+}
+@keyframes out-right {
+	from {transform:rotate3d(0,0,0, 0deg)}
+	to	 {transform:rotate3d(0,-1,0, 90deg)}
+}
+@keyframes out-bottom {
+	from {transform:rotate3d(0,0,0, 0deg)}
+	to	 {transform:rotate3d(1,0,0, 90deg)}
+}
+@keyframes out-left {
+	from {transform:rotate3d(0,0,0, 0deg)}
+	to	 {transform:rotate3d(0,1,0, 90deg)}
+}
